@@ -1,0 +1,9 @@
+{
+    "name": "dummy-db-plugin",
+    "version": "1.0.0",
+    "datasource": "DummyDB",
+    "capabilities": ["scan", "metadata", "preview"],
+    "entry": "index.js",
+    "ui": "TablePreview"
+  }
+  
