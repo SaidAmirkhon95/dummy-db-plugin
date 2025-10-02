@@ -2,9 +2,9 @@ const { parentPort } = require("worker_threads");
 
 // Fake rows for demo purposes
 const dummyRows = [
-  { id: 1, name: "Alice", email: "alice@example.com" },
-  { id: 2, name: "Bob", email: "bob@example.com" },
-  { id: 3, name: "Charlie", email: "charlie@example.com" }
+  { id: 1, name: "A", email: "a@example.com" },
+  { id: 2, name: "B", email: "b@example.com" },
+  { id: 3, name: "C", email: "c@example.com" }
 ];
 
 parentPort.on("message", (msg) => {
