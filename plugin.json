@@ -1,9 +1,12 @@
 {
-    "name": "dummy-db-plugin",
-    "version": "1.0.0",
-    "datasource": "DummyDB",
-    "capabilities": ["scan", "metadata", "preview"],
-    "entry": "index.js",
-    "ui": "TablePreview"
-  }
-  
+  "name": "dummy-db-plugin",
+  "version": "1.0.0",
+  "datasource": "DummyDB",
+  "capabilities": ["scan", "metadata", "preview"],
+  "commands": [
+    { "id": "dummy.scan", "title": "Scan Dummy DB" }
+  ],
+  "entry": "index.js",
+  "engines": { "catalog": "^1.0.0" },
+  "ui": "TablePreview"
+}

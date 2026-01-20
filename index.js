@@ -1,21 +1,25 @@
 const { parentPort } = require("worker_threads");
 
-// Fake rows for demo purposes
-const dummyRows = [
-  { id: 1, name: "A", email: "a@example.com" },
-  { id: 2, name: "B", email: "b@example.com" },
-  { id: 3, name: "C", email: "c@example.com" }
-];
-
 parentPort.on("message", (msg) => {
-  if (msg.action === "scan") {
-    parentPort.postMessage({ rows: dummyRows });
-  } else if (msg.action === "metadata") {
+  if (msg.type !== "request") return;
+
+  if (msg.action === "command") {
+    const { commandId } = msg.payload;
+
+    if (commandId === "dummy.scan") {
+      const csv = "id,name,email\n1,A,a@example.com\n2,B,b@example.com\n3,C,c@example.com";
+      parentPort.postMessage({
+        type: "response",
+        id: msg.id,
+        payload: { format: "csv", data: csv }
+      });
+      return;
+    }
+
     parentPort.postMessage({
-      tables: ["users", "orders"],
-      description: "Dummy database plugin"
+      type: "response",
+      id: msg.id,
+      error: "Unknown commandId: " + commandId
     });
-  } else {
-    parentPort.postMessage({ error: `Unknown action: ${msg.action}` });
   }
 });
